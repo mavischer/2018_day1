@@ -41,10 +41,18 @@ def write_pwdb(pwdb):
 def get_path():
     return '/tmp/pwdb.pkl'
 
+def pwhash(password):
+    charArray = password.split()
+    hash = 0
+    for i,char in enumerate(charArray):
+        hash += (i+1) * ord(char)
+    return(hash)
+
+
+
 pwdb = read_pwdb()
 username, password = get_credentials()
 if authenticate(username, password, pwdb):
     print(pwdb)
 else:
     print('No match!')
-
